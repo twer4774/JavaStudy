@@ -20,11 +20,13 @@
               Ex) 클래스를 만들어 놓고 쓰지 않으면, 설계도의 존재 이유가 없다.
                   우리가 클래스(설계도)를 이용하여, 무엇을 만든다면, 그것이 바로 객체란 개념이다.
                   그 객체가 바로 클래스의 인스턴스다.
-                  Ex) public class A { int a }
+                  Ex) 
+                  public class A { int a }
                   순서 : 클래스 생성 -> 객체 생성 -> 사용
           
     - Top level 클래스는 public으로 선언하고 반드시 java 파일명과 같아야 한다.
-      Ex) public class Test {} == Test.java
+      Ex) 
+      public class Test {} == Test.java
 
     - Main 메소드는 하나의 프로젝트에서 여러 개 존재할 수 없으며, 무조건 하나다.
       그리고 프로그램은 Main에서 시작하고, Main에서 끝난다.
@@ -36,7 +38,8 @@
       이유 : 멤버 변수 즉, 클래스 내부에서 선언한 변수들은 new 선언을 하지 않으면,
              Heap 메모리 영역에 할당이 되지 않기 때문에 사용할 수가 없다.
              따라서, 사용하기 위해서는 힙 메모리 영역에 할당을 해야 한다.
-             Ex) public class Test {
+             Ex) 
+             public class Test {
                  int t;
              }
                 public static void Main(String[] args) {
@@ -68,7 +71,8 @@
     - 생성자는 초기화를 위해 사용한다.
     - new() 에서 () 부분이 생성자를 의미하며, 생성자를 사용하지 않고 코드를 구현한다면,
       더 많은 코드를 짜야 하기 때문에, 효율적인 측면에서 생성자를 사용한다.
-      사용법) 
+      사용법)
+
       public class Person {
           String name;
           int age;
@@ -85,9 +89,11 @@
               ! 이게 바로 생성자를 사용하는 이유이다.
           }
       }
+
     - this는 내장변수라고 부르며, 인스턴스의 자기 자신을 의미한다.
     - this를 사용하는 이유는, 인스턴스 변수임을 명확히 하기 위함이다.
-      Ex) public class Cafe {
+      Ex) 
+      public class Cafe {
             String name;
             String menu;
             int price;
@@ -117,8 +123,11 @@
 
  - ArrayList 의 사용법 이해
     - 배열 선언
-      Ex) int[] i = new int[5]; 또는 int[] i = new int[] {1,2,3,4};
-      주의할 점 : int[] i = new int[5] {1,2,3,4,5}; 는 오류다.
+      Ex) 
+      int[] i = new int[5]; 또는 int[] i = new int[] {1,2,3,4};
+      주의할 점 : 
+      int[] i = new int[5] {1,2,3,4,5}; 
+      위 코드는 오류다.
 
 
 
