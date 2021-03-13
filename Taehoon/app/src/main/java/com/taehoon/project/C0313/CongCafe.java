@@ -1,4 +1,4 @@
-package com.taehoon.project;
+package com.taehoon.project.C0313;
 
 public class CongCafe {
 	String name;

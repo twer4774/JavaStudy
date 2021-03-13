@@ -1,4 +1,4 @@
-package com.taehoon.project;
+package com.taehoon.project.C0313;
 
 public class Company {
 	public static int cardNumber = 100;
@@ -7,7 +7,6 @@ public class Company {
 
 	public static void some() {
 		cardNumber = 200;
-		name = "asdf";
 	}
 	public void some2() {
 		cardNumber = 200;

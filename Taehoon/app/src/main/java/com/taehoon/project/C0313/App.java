@@ -1,4 +1,4 @@
-package com.taehoon.project;
+package com.taehoon.project.C0313;
 
 public class App {
 
@@ -7,7 +7,7 @@ public class App {
 		Person p1 = new Person("민수");
 		Person p2 = new Person("철수");
 
-		Wallet w = new Wallet(4999);
+		Wallet w = new Wallet(6000);
 
 		if(w.money < 5000) {
 			w.setOwner(p1.name);
