@@ -25,7 +25,7 @@ public class Customer {
     }
 
     //보너스 포인트 적립, 지불 가격 계산 메소드
-    public int clacPrice(int price){
+    public int calcPrice(int price){
         bonusPoint += price * bonusRatio; //보너스 포인트 계산
         return price;
     }
