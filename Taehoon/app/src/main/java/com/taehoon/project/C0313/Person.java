@@ -1,15 +1,9 @@
 package com.taehoon.project.C0313;
 
-public class Person {
-	String name;
-	int money;
+public class Person implements Interface {
 
-	public Person(String name) {
-		this.name = name;
+	@Override
+	public void study() {
+
 	}
-
-	public void getMoney(int money) {
-		this.money = money;
-	}
-
 }

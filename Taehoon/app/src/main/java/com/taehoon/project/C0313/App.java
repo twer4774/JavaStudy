@@ -2,31 +2,45 @@ package com.taehoon.project.C0313;
 
 public class App {
 
-	public static void main(String[] args) {
-
-		Person p1 = new Person("민수");
-		Person p2 = new Person("철수");
-
-		Wallet w = new Wallet(6000);
-
-		if(w.money < 5000) {
-			w.setOwner(p1.name);
-			p1.getMoney(w.money);
-			w.money = 0;
+	static class A {
+		public void m1() {
+			System.out.println("A.");
 		}
-		else if(w.money > 5000) {
-			w.setOwner(p2.name);
-			p2.getMoney(w.money);
-			w.money = 0;
-		}
-		else {
-			w.setOwner("주인");
-		}
-
-		System.out.printf("지갑의 Owner는 %s 입니다.\n", w.getOwner());
-		System.out.printf("%s 돈 : %d원\n", p1.name , p1.money);
-		System.out.printf("%s 돈 : %d원\n", p2.name, p2.money);
-		System.out.printf("지갑의 돈 : %d원\n", w.money);
-
 	}
+	static class B extends A {
+		public void m2() {
+			System.out.println("B.");
+		}
+	}
+	static class C extends A {
+		public void m3() {
+			System.out.println("C.");
+		}
+	}
+	static class D extends A {
+		public void m4() {
+			System.out.println("D.");
+		}
+	}
+	static class E extends B {
+		public void m5() {
+			System.out.println("E.");
+		}
+	}
+	static class F extends D {
+		public void m6() {
+			System.out.println("F.");
+		}
+	}
+	static class G extends D {
+		public void m7() {
+			System.out.println("G.");
+		}
+	}
+
+	public static void main(String[] args) {
+		App a = new App();
+	}
+
+
 }

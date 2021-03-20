@@ -14,4 +14,8 @@ public class Buyer {
 		serialNumber = cardNumber;
 	}
 
+
+	static class A {
+
+	}
 }
