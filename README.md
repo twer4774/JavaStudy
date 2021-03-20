@@ -157,7 +157,203 @@ public class Person {
 
 
 ■ 2021-03-20 (2일차)
+ - 생성자와 this에 대한 복습
+    - 생성자는 인스턴스를 생성할 때, 초기값을 주는 용도로 사용된다.
+      ```
+      public class Foods {
+        int numberOfFood;
+        String name;
+        String producer;
+        String origin;
 
+        public Foods(int numberOfFood, String name, String producer, String origin) {
+          this.numberOfFood = numberOfFood;
+          this.name = name;
+          this.producer = producer;
+          this.origin = origin;
+        }
+
+        public static void main(String[] args) {
+          Foods food = new Foods(10, "사과", "김이윤", "청송");
+          대괄호가 생성자를 의미한다.
+          선언과 동시에 값 초기화가 가능하다.
+          이러한 장점이 있기에 생성자를 사용한다.
+        }
+      }
+      ```
+  
+  - 상속
+    - 상속은 말 그대로 누군가가 누군가에게 귀속시키는 걸 의미한다.
+    - 아래 코드로 예를 들어보자.
+    ```
+    public class Winner {
+      int score;
+      String name;
+
+      class Loser extends Winner {
+        
+      }
+    }
+    ```
+    위 코드에서 Loser가 Winner의 상속을 받았단 뜻이 된다.
+    Loser -> Winner 가 된다.
+    헷갈리지 말자!
+    Loser <- Winner 가 아니다.
+    원래대로라면, Winner가 Loser를 가리키는 게 맞지만,
+    자바에서는 반대가 맞다.
+    
+    상속을 쓰는 이유는 효율성이다.
+    예를 들면, 고객의 데이터를 다룬다면,
+    고객의 등급이 나뉘어 질 것이다.
+    Silver를 default로 VVIP까지 있다고 가정해보자.
+    
+    Customer 클래스를 만들어서 VVIP까지 다 다룰 수 있다.
+    하지만, 한 클래스에 방대한 양의 코드가 만들어지게 된다.
+    반대로, 각 등급마다 클래스를 만든다면, 한 클래스 안의 코드 양이
+    훨씬 적어진다.
+    
+    비록 클래스가 더 많아진다는 점이 있지만, 크게 보았을 때 단점은 아니다.
+    
+    각 등급마다 주어지는 할인율 혹은 혜택이 다 다르기 때문에
+    Customer 클래스를 부모 클래스로 지정하고,
+    나머지 GoldCustomer, DiamondCustomer, VIPCustomer를 자식 클래스로 지정한다.
+    
+    Customer 클래스를 상속 받음으로써, 기본 인스턴스(아이디, 성명, 전화번호 등)을
+    만들지 않아도 된다.
+    혜택에 관련된 데이터만 만들면 된다.
+
+    ```
+    class Customer {
+      int customerID;
+      String customerName;
+      String phoneNumber;
+      float saleRatio;
+
+      public Customer(int customerID, String customerName, String phoneNumber) {
+        this.customerID = customerID;
+        this.customerName = customerName;
+        this.phoneNumber = phoneNumber;
+        
+        this.saleRatio = 0.01;
+      }
+
+      class VIPCustomer extends Customer{
+        int bonusPoint;
+        
+        public VIPCustomer(ind customerID, String customerName, String phoneNumber) {
+          super(customerID, customerName, phoneNumber);
+          super.saleRatio = 0.05;
+        }
+
+        public void bonus(int price) {
+          bonusPoint += price * 0.01;
+        }
+      }
+    }
+    ```
+    이렇게 상위 클래스인 Customer는 기본적인 인스턴스만 정의하고,
+    하위 클래스인 VIPCustomer는 추가적으로 넣을 인스턴스만 정의하고,
+    나머지는 상위 클래스인 Customer의 데이터를 사용한다.
+  
+  - 다형성
+    - 다형성은 여러 타입의 객체를 참조할 수 있다.
+      예를 들면, A, B, C, D 클래스들이 있다고 가정해보자.
+      
+      A클래스는 부모 클래스이며, B와 C 클래스는 A클래스를 상속 받는다.
+      그리고 마지막 D클래스는 C 클래스를 상속 받는다.
+      
+      그래서 D클래스로 인스턴스 선언을 하면, A와 C 클래스의 인스턴스 및 메소드를
+      사용할 수 있다.
+      ```
+      class A {
+        int a;
+      }
+      class B extends A {
+        int b;
+      }
+      class C extends A {
+        int c;
+      }
+      class D extends C {
+        int d;
+      }
+      public static void main(String[] args) {
+        D d = new D();
+        d.a; <- 가능
+        d.c; <- 가능
+        
+        하지만, 부모클래스로 선언을 하면 이야기가 달라진다.
+        A ace = new D();
+        위 ace 인스턴스는 A의 a밖에 사용하지 못 한다.
+        이와 같이 사용하는 이유는 제약을 걸기 위함이다.
+        D클래스의 인스턴스를 사용 방지 목적으로 사용한다.
+
+        D ace = new A();
+        위 인스턴스는 오류다.
+        부모 클래스를 인스턴스화 시켜서 자식 클래스에 넘겨줄 수 없다.
+        
+        이것이 다형성이다.
+      }
+      ```
+
+  - super와 this의 차이
+    - super는 현재 클래스를 건너 뛰고, 상위 클래스부터 찾아 올라간다.
+    - this는 현재 클래스부터 찾아서 상위 클래스까지 찾아 올라간다.
+    - 원하는 데이터를 발견 시, 그 클래스에서 더이상 올라가지 않는다.
+    ```
+    class A {
+        int b;
+      }
+      class B extends A {
+        int b;
+      }
+      class C extends A {
+        int b;
+      }
+      class D extends C {
+        int b;
+        
+        public void m() {
+          super.b = 1;
+        }
+      }
+      ```
+      D 클래스의 m메소드 안의 b라는 인스턴스를 super로 탐색한다.
+      자기 클래스를 상속한 C클래스부터 찾는다.
+      만약 b가 있다면, C클래스의 인스턴스 b에 1을 넣고 끝이 난다.
+      
+      반대로, super.b가 아닌 this.b로 한다면,
+      현재 클래스부터 시작하기 때문에 D클래스의 b를 참조하고 끝난다.
+      그래서 D클래스의 b는 1이 된다.
+
+  - 오버라이딩
+    - 오버라이딩은 쉽게 말하자면, 부모 클래스의 메소드를
+      자식 클래스가 원하는대로 바꿔서 사용하는 것이다.
+      전제조건이 있는데, 접근제어자 리턴타입 메소드명이 전부 다 같아야 한다.
+      하나라도 틀리면, 그건 오버라이딩이 아니다.
+      ```
+      public class First {
+        public void head() {
+          System.out.println("퍼스트");
+        }
+      }
+      class Second extends First {
+        @Override
+        public void head() {
+          System.out.println("세컨드");
+        }
+      }
+      ```
+      위 코드에서 한 가지 주의깊게 볼 점은
+      바로 @Override 이다.
+      @은 애노테이션이라 하고, 주석이라 부른다.
+      주석을 새겨서, JVM에 이 메소드는 오버라이딩된 메소드라고 알려준다.
+      그래서 Second클래스로 인스턴스를 선언하고, head 메소드를 출력하면,
+      퍼스트 가 아닌, 세컨드로 출력된다.
+
+      만일, Second클래스의 head() 메소드가 hand() 메소드로 명명한다면,
+      오버라이딩이 아니고, 새 메소드를 생성한 셈이 된다.
+      
 
 ■ 2021-03-27 (3일차)
 
