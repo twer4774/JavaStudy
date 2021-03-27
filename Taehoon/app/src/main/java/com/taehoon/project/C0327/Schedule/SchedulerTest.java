@@ -1,4 +1,4 @@
-package com.taehoon.project.C0327;
+package com.taehoon.project.C0327.Schedule;
 
 public class SchedulerTest {
   public static void main(String[] args) throws Exception {

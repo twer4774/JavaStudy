@@ -1,4 +1,4 @@
-package com.taehoon.project.C0327;
+package com.taehoon.project.C0327.Schedule;
 
 public interface Scheduler {
   public void getNextCall();
