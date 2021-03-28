@@ -468,14 +468,14 @@ public class Person {
       - 인터페이스는 다중상속이 가능하다.
         하나의 클래스에서 두 개 이상의 인터페이스를 구현할 수 있다.
         ```
-        Class A implements B, C, D {}
+        class A implements B, C, D {}
         ```
     
     - 동시 상속 / 구현
       - 한 클래스에 클래스와 인터페이스 두 가지를 동시에 상속 받을 수 있다.
       - 일반 클래스가 추상클래스와 인터페이스를 동시에 상속 받았다고 가정해보자.
       ```
-      Class NormalClass extends AbstractClass implements Interface {
+      class NormalClass extends AbstractClass implements Interface {
         이런 식으로 이루어지는데,
         추상클래스의 추상메소드가 있다면, 반드시 구현해야 하며,
         인터페이스의 추상메소드 또한, 반드시 구현해야 한다.
@@ -497,7 +497,7 @@ public class Person {
         abstract class Abs implements Inter {
           여기서 method()를 오버라이딩해봤자 의미가 없다.
         }
-        Class Sub extends Abs {
+        class Sub extends Abs {
           여기서 method()를 오버라이딩해야 사용의 의미가 있다.
         }
         ```
@@ -505,6 +505,44 @@ public class Person {
         하지만, 다양한 기능이 들어있는 인터페이스라면, 골라서 사용할 수 있는
         장점이 있다.
 
+    - 익명 클래스로 인스턴스 생성하기
+      - 인터페이스 자체를 인스턴스로 생성이 불가능하지만,
+        익명 클래스로는 생성이 가능하다.
+        익명 클래스로 생성을 한 후, 구현체를 오버라이딩해서 사용할 수 있다.
+        ```
+        interface Inter {
+          void method();
+        }
+
+        class A implements Inter {
+          @Override
+          void method() {
+            System.out.println("Inter의 method()");
+          }
+        }
+
+        public class Main {
+          public static void main(String[] args) {
+            Inter inter = new Inter() {
+              @Override
+              void method() {
+                System.out.println("method() 오버라이딩");
+              }
+            };
+
+            inter.method();
+            위 결과는 "method() 오버라이딩" 이고,
+            
+            A a = new A();
+            a.method();
+            위 결과는 "Inter의 method()" 가 된다.
+
+            아니면, 다형성을 이용해서 선언한 다음 사용도 가능하다.
+            Inter b = new A();
+            b.method();
+            위 결과는 a.method() 와 동일하다.
+          }
+        }
 
 ■ 2021-04-03 (4일차)
 
